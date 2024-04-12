@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>reveal.js</title>
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/csshake.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="dist/theme/white.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;400;500;600;700&display=swap"
+      rel="stylesheet">
+    <link rel="preload"
+    href="./dist/theme/fonts/work/subset-YanoneKaffeesatz-ExtraLight.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <img src="./img/stachka.png" style="max-height: 15vh;" alt="">
+          <h1>HTMX на практике</h1>
+        </section>
+        <section>
+          <table>
+            <tr>
+              <td style="vertical-align: middle">
+                <img style="height: 8em" src="img/logo.jpg" alt="">
+              </td>
+              <td style="vertical-align: middle">
+                Золотых Алексей
+                <br>
+                  @zolotyh
+                <br>
+                  Github | Telegram | Twitter
+              </td>
+            </tr>
+          </table>
+        </section>
+        <section>
+          <img style="height: 10em;" src="./img/logo.svg" alt="Лого МойОфис">
+        </section>
+        <section>
+          <img src="./img/holyjs.svg" alt="HolyJS">
+        </section>
+        <section>
+          <img src="./img/htmx.png" alt="">
+        </section>
+        <section data-transition="none">
+          <img style="width: 35vw" src="./img/server.png" alt="">
+        </section>
+        <section data-transition="none">
+          <img style="width: 35vw" src="./img/server2.png" alt="">
+        </section>
+        <section>
+          <img src="./img/rendering.png" alt="">
+        </section>
+        <section data-transition="none">
+          <h2>React &mdash; функция render</h2>
+          <pre><code data-line-numbers data-trim data-noescape>
+const root = ReactDOM.createRoot(domRoot);
+root.render(&lt;h1&gt;Hello, world!&lt;/h1&gt;);
+          </code></pre>
+        </section>
+        <section>
+          <h2>Больше API хороших и надежных!</h2>
+          <img src="./img/api.png" alt="">
+        </section>
+        <section>
+          <h2>На сегодня</h2>
+          <ul>
+            <li class="fragment">JSON</li>
+            <li class="fragment">Рендеринг на клиенте</li>
+            <li class="fragment">Строим API</li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="r-fit-text">НО...</h2>
+        </section>         x
+        <section>
+          <img src="./img/admin.png" alt="">
+        </section>
+        <section>
+          <h2>Про время</h2>
+          <img src="./img/line.png" alt="">
+        </section>
+        <section>Про надежность и кол-во деталей</section>
+        <section>
+          Пример 1. Больше Ajax почти за бесплатно
+        </section>
+        <section>
+          Пример 2. Формы, валидации и общие принципы
+        </section>
+        <section>
+          Пример 3. Поиск, погинация
+        </section>
+        <section>
+          Пример 4. Если все-таки нужен React
+        </section>
+        <section>Выводы</section>
+        <section>
+          <h2>Время вопросов</h2>
+          <p>Золотых Алексей: @zolotyh</p>
+          <!-- <table> -->
+          <!--   <tr> -->
+          <!--     <td style="vertical-align: middle"> -->
+          <!--       <p>Ссылка на слайды</p> -->
+          <!--       <img src="img/qr.svg"  style="max-height: 20vh;" alt=""> -->
+          <!--     </td> -->
+          <!--     <td style="vertical-align: middle"> -->
+          <!--       <p>Обратная связь</p> -->
+          <!--       <img src="img/qr2.png"  style="max-height: 20vh;" alt=""> -->
+          <!--     </td> -->
+          <!--   </tr> -->
+          <!-- </table> -->
+        </section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+    // More info about initialization & config:://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      backgroundTransition: 'none',
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+    });
+    </script>
+  </body>
+</html>
