@@ -53,6 +53,9 @@
         <section>
           <img src="./img/htmx.png" alt="">
         </section>
+        <section>
+          <p class="r-fit-text">Зачем?!</p>
+        </section>
         <section data-transition="none">
           <img style="width: 35vw" src="./img/server.png" alt="">
         </section>
@@ -88,38 +91,167 @@ root.render(&lt;h1&gt;Hello, world!&lt;/h1&gt;);
           <img src="./img/admin.png" alt="">
         </section>
         <section>
-          <h2>Про время</h2>
+          <h2>Про время и лишние запросы</h2>
           <img src="./img/line.png" alt="">
         </section>
         <section>Про надежность и кол-во деталей</section>
         <section>
-          Пример 1. Больше Ajax почти за бесплатно
+          <img src="./img/htmx-2.png" alt="">
         </section>
         <section>
-          Пример 2. Формы, валидации и общие принципы
+          <h2>Весь HTMX</h2>
+          <pre><code data-trim>
+&lt;script src=&quot;https://unpkg.com/htmx.org@1.9.11&quot;&gt;&lt;/script&gt;
+
+&lt;button
+      hx-post=&quot;/clicked&quot; 
+      hx-swap=&quot;outerHTML&quot;&gt;
+    Click Me
+&lt;/button&gt;
+          </code></pre>
         </section>
         <section>
-          Пример 3. Поиск, погинация
+          <h2>Старый добрый серверный рендеринг</h2>
+<pre><code class="html" data-trim>
+{% extends &quot;base.html&quot; %}
+
+
+{% block content %}
+&lt;ul&gt;
+  {% for name, item in items %}
+  &lt;li&gt;{{ name }}: {{ item }}&lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;
+{% endblock %}
+</code></pre>
         </section>
         <section>
-          Пример 4. Если все-таки нужен React
+          Больше Ajax почти за бесплатно
+          <pre class="fragment"><code data-trim>
+&lt;div hx-boost=&quot;true&quot;&gt;
+  &lt;a href=&quot;/page1&quot;&gt;Go To Page 1&lt;/a&gt;
+  &lt;a href=&quot;/page2&quot;&gt;Go To Page 2&lt;/a&gt;
+&lt;/div&gt;
+          </code></pre>
         </section>
-        <section>Выводы</section>
+        <section>
+          <h2>Примеры с навигацией</h2>
+        </section>
+        <section>
+          <h2>Ленивость</h2>
+        </section>
+        <section data-background-video="./img/lazy.mp4"></section>
+        <section>
+          <pre><code data-trim>
+&lt;div hx-get=&quot;/graph&quot; 
+        hx-trigger=&quot;load&quot;&gt;
+  &lt;img class=&quot;htmx-indicator&quot;
+          src=&quot;/img/bars.svg&quot;/&gt;
+&lt;/div&gt;
+          </code></pre>
+          <pre><code data-trim>
+.htmx-settling img {
+  opacity: 0;
+}
+img {
+ transition: opacity 300ms ease-in;
+}
+          </code></pre>
+        </section>
+        <section>
+          Формы, и общие принципы
+        </section>
+        <section data-background-video="./img/edit.mp4">
+          
+        </section>
+        <section>
+          <h2>Начало</h2>
+          <pre><code data-trim>
+&lt;div hx-target=&quot;this&quot; hx-swap=&quot;outerHTML&quot;&gt;
+    &lt;div&gt;&lt;label&gt;First Name&lt;/label&gt;: Joe&lt;/div&gt;
+    &lt;div&gt;&lt;label&gt;Last Name&lt;/label&gt;: Blow&lt;/div&gt;
+    &lt;div&gt;&lt;label&gt;Email&lt;/label&gt;: joe@blow.com&lt;/div&gt;
+    &lt;button hx-get=&quot;/contact/1/edit&quot; class=&quot;btn btn-primary&quot;&gt;
+    Click To Edit
+    &lt;/button&gt;
+&lt;/div&gt;
+          </code></pre>
+        </section>
+        <section>
+<h2>GET /contact/1/edit</h2>
+<pre><code data-trim>
+  &lt;form hx-put=&quot;/contact/1&quot; hx-target=&quot;this&quot; hx-swap=&quot;outerHTML&quot;&gt;
+    ...
+    &lt;button class=&quot;btn&quot;&gt;Submit&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; hx-get=&quot;/contact/1&quot;&gt;Cancel&lt;/button&gt;
+  &lt;/form&gt;
+</code></pre>
+        </section>
+        <section>
+          <h2>PUT /contact/1</h2>
+          <pre><code>
+&lt;div hx-target=&quot;this&quot; hx-swap=&quot;outerHTML&quot;&gt;
+    &lt;div&gt;&lt;label&gt;First Name&lt;/label&gt;: Stachka&lt;/div&gt;
+    &lt;div&gt;&lt;label&gt;Last Name&lt;/label&gt;: Blow&lt;/div&gt;
+    &lt;div&gt;&lt;label&gt;Email&lt;/label&gt;: joe@blow.com&lt;/div&gt;
+    &lt;button hx-get=&quot;/contact/1/edit&quot; class=&quot;btn btn-primary&quot;&gt;
+    Click To Edit
+    &lt;/button&gt;
+&lt;/div&gt;
+          </code></pre>
+        </section>
+        <section>
+          Поиск, пагинация
+          <img src="./img/admin.png" alt="">
+        </section>
+        <section>
+          <h2>Весь поиск</h2>
+          <pre><code data-trim class="html">
+&lt;input id=&quot;search&quot; 
+       type=&quot;search&quot; 
+       name=&quot;q&quot; 
+       value=&quot;{{ request.args.get(&#39;q&#39;) or &#39;&#39; }}&quot;
+       hx-get=&quot;/contacts&quot;
+       hx-trigger=&quot;change, keyup delay:200ms changed&quot;
+       hx-target=&quot;tbody&quot;
+       hx-push-url=&quot;true&quot;/&gt;
+          </code></pre>
+        </section>
+        <section>
+          Если все-таки нужен React
+        </section>
+        <section>
+          WebSocket
+        </section>
+        <section>
+          <h2>
+            Недостатки
+          </h2>
+          <ul>
+            <li class="fragment">Для Fullstack</li>
+            <li class="fragment">Не для большой команды</li>
+            <li class="fragment">Нет API</li>
+            <li class="fragment">Http Attributes Hell</li>
+          </ul>
+        </section>
+        <section>
+          <h2>
+            Достоинства
+          </h2>
+          <ul>
+            <li class="fragment">Для Fullstack</li>
+            <li class="fragment">Не для большой команды</li>
+            <li class="fragment">Супербыстро</li>
+            <li class="fragment">Декларативно</li>
+            <li class="fragment">Нет сборки и мало JS</li>
+          </ul>
+        </section>
+        <section>
+          Выводы
+        </section>
         <section>
           <h2>Время вопросов</h2>
           <p>Золотых Алексей: @zolotyh</p>
-          <!-- <table> -->
-          <!--   <tr> -->
-          <!--     <td style="vertical-align: middle"> -->
-          <!--       <p>Ссылка на слайды</p> -->
-          <!--       <img src="img/qr.svg"  style="max-height: 20vh;" alt=""> -->
-          <!--     </td> -->
-          <!--     <td style="vertical-align: middle"> -->
-          <!--       <p>Обратная связь</p> -->
-          <!--       <img src="img/qr2.png"  style="max-height: 20vh;" alt=""> -->
-          <!--     </td> -->
-          <!--   </tr> -->
-          <!-- </table> -->
         </section>
       </div>
     </div>
